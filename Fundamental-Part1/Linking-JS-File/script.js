@@ -1,0 +1,1 @@
+alert('Linking JS File in HTML Files.')
