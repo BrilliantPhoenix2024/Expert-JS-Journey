@@ -27,7 +27,9 @@
         <button class="login__btn">&rarr;</button>
       </form>
     </nav>
+    
     <main class="app">
+
       <!-- BALANCE -->
       <div class="balance">
         <div>
@@ -76,8 +78,34 @@
           <label for="" class="form__label">Amount</label>
         </form>
       </div>
-      
+
+      <!-- OPERATION: LOAN -->
+      <div class="operation operation--loan">
+        <h2>Request loan</h2>
+        <form action="" class="form form--loan">
+            <input type="number" class="form__input form__input--loan">
+            <button class="form__btn form__btn--loan">&rarr;</button>
+            <label for="" class="form__label">Amount</label>
+        </form>
+      </div>
+
+      <!-- OPERATION: CLOSE -->
+      <div class="operation operation--close">
+        <h2>Close account</h2>
+        <form action="" class="form form--close">
+            <input type="text" class="form__input form__input--user">
+            <input type="password" class="form__input form__input--pin" maxlength="6">
+            <button form__btn form__btn--close>&rarr;</button>
+            <label for="" class="form__label">Confirm user</label>
+            <label for="" class="form__label">Confirm PIN</label>
+        </form>
+      </div>
+
+      <!-- LOGOUT TIMER -->
+      <p class="logout-timer">You will be logged out in <span class="timer">05:00</span></p>
+
     </main>
+
     <script src="script.js"></script>
   </body>
 </html>
