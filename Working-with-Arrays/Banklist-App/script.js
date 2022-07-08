@@ -58,6 +58,8 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Functions
+
+// Displaying Movements
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
   // .textContent = 0;
@@ -70,15 +72,45 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov} €</div>
         </div>
         `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-
 displayMovements(account1.movements);
+
+// Computing Balance
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`;
+};
+calcDisplayBalance(account1.movements);
+
+// Computing IN and OUT and INTEREST in Summery section
+const calcdisplaySummery = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)} €`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((interest, i, arr) => {
+      // console.log(arr);
+      return interest >= 1;
+    })
+    .reduce((acc, interest) => acc + interest, 0);
+  labelSumInterest.textContent = `${interest} €`;
+};
+calcdisplaySummery(account1.movements);
 
 // Computing Usernames
 const createUsernames = function (accs) {
@@ -90,6 +122,4 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
-
 createUsernames(accounts);
-// console.log(accounts);
