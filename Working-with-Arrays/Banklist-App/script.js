@@ -86,7 +86,6 @@ const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} €`;
 };
-calcDisplayBalance(account1.movements);
 
 // Computing IN and OUT and INTEREST in Summery section
 const calcdisplaySummery = function (movements) {
@@ -110,7 +109,6 @@ const calcdisplaySummery = function (movements) {
     .reduce((acc, interest) => acc + interest, 0);
   labelSumInterest.textContent = `${interest} €`;
 };
-calcdisplaySummery(account1.movements);
 
 // Computing Usernames
 const createUsernames = function (accs) {
@@ -123,3 +121,40 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
+
+
+// Implementing LOGIN
+// Event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Display movements
+    displayMovements(currentAccount.movements);
+
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    // Display summary
+    calcdisplaySummery(currentAccount.movements);
+  };
+});
