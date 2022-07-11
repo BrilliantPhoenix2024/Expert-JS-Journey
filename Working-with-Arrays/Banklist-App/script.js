@@ -1,22 +1,23 @@
 'use strict';
+// BANKIST APP
 
 // Data
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'Atefeh Mohammadi',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Mohammad Taghian',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
 };
 
 const account3 = {
-  owner: 'Steven Thomas Williams',
+  owner: 'Barf Taghian',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
@@ -32,6 +33,7 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 
 // Elements
+
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -58,37 +60,35 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Functions
-
 // Displaying Movements
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  // .textContent = 0;
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
       <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${
+        <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov} €</div>
-        </div>
-        `;
+        <div class="movements__value">${mov}€</div>
+      </div>
+    `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 // Computing Balance
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance} €`;
+  labelBalance.textContent = `${acc.balance}€`;
 };
-
 // Computing IN and OUT and INTEREST in Summery section
-const calcdisplaySummery = function (acc) {
+const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
@@ -97,17 +97,17 @@ const calcdisplaySummery = function (acc) {
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)} €`;
+  labelSumOut.textContent = `${Math.abs(out)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter((interest, i, arr) => {
+    .filter((int, i, arr) => {
       // console.log(arr);
-      return interest >= 1;
+      return int >= 1;
     })
-    .reduce((acc, interest) => acc + interest, 0);
-  labelSumInterest.textContent = `${interest} €`;
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
 };
 
 // Computing Usernames
@@ -131,11 +131,11 @@ const updateUI = function (acc) {
   calcDisplayBalance(acc);
 
   // Display summary
-  calcdisplaySummery(acc);
+  calcDisplaySummary(acc);
 };
 
 // Implementing LOGIN
-// Event handler
+// Event handlers
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
@@ -152,7 +152,6 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
-
     containerApp.style.opacity = 100;
 
     // Clear input fields
@@ -194,9 +193,9 @@ btnLoan.addEventListener('click', function (e) {
 
   const amount = Number(inputLoanAmount.value);
 
-  if (amount > 0 && currentAccount.movements.some(moe => mov >= amount / 10)) {
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
-    currentAccount.mov.push(amount);
+    currentAccount.movements.push(amount);
 
     // Update UI
     updateUI(currentAccount);
@@ -215,6 +214,8 @@ btnClose.addEventListener('click', function (e) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
+    console.log(index);
+    // .indexOf(23)
 
     // Delete account
     accounts.splice(index, 1);
@@ -224,4 +225,12 @@ btnClose.addEventListener('click', function (e) {
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+// Implement Sort Buttom
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
