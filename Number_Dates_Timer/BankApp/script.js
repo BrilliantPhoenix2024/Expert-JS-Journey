@@ -249,3 +249,13 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+// Modify UI for fun
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    // 0, 2, 4, 6, ....
+    if (i % 2 === 0) row.style.backgroundColor = 'pink';
+    // 0, 3, 5, 7, ....
+    if (i % 2 === 1) row.style.backgroundColor = 'blue';
+  });
+});
