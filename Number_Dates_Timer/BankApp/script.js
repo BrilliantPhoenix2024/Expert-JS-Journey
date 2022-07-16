@@ -93,6 +93,14 @@ const formatMovementDate = function (date) {
   }
 };
 
+// Format Currency Function
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
+
 // Displaying Movements Function
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -107,13 +115,15 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date);
 
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
     <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -124,8 +134,10 @@ const displayMovements = function (acc, sort = false) {
 // Computing Balance
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+
   labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
+
 // Computing IN and OUT and INTEREST in Summery section
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
@@ -196,7 +208,6 @@ const options = {
   weekday: 'long', // 'short'
 };
 const local = navigator.language;
-
 
 labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(now);
 // labelDate.textContent = new Intl.DateTimeFormat('en-GB').format(now);
