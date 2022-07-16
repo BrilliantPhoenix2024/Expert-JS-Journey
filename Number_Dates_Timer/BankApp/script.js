@@ -178,11 +178,30 @@ const updateUI = function (acc) {
 let currentAccount;
 
 // Adding Dates to Banklist App
+
 // FAKE ALWAYS LOGGED IN
 currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
-// day / month / year
+
+// Internationalizing Dates (INtl)
+// Experimenting API
+const now = new Date();
+const options = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'long', // 'numeric' // '2-digit'
+  year: 'numeric', // '2-digit'
+  weekday: 'long', // 'short'
+};
+const local = navigator.language;
+
+
+labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(now);
+// labelDate.textContent = new Intl.DateTimeFormat('en-GB').format(now);
+// labelDate.textContent = new Intl.DateTimeFormat('ar-SY').format(now);
+// labelDate.textContent = new Intl.DateTimeFormat('fa-IR').format(now);
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
