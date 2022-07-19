@@ -215,6 +215,7 @@ const startLogOutTimer = function () {
   return timer;
 };
 
+///////////////////////////
 // Implementing LOGIN Function
 // Event handlers
 let currentAccount, timer;
@@ -306,6 +307,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -326,6 +331,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 3000);
   }
   inputLoanAmount.value = '';
