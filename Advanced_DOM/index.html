@@ -2,54 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="img/icon.png" />
 
-    <title>Bankist</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" type="image/png" href="" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
       rel="stylesheet"
     />
+    <title>Bankist</title>
   </head>
   <body>
     <header class="header">
-      <nav class="nav">
-        <img src="" alt="Bankist logo" class="nav__logo" id="logo" />
+      <nav class="nav sticky">
+        <img
+          src="img/logo.png"
+          alt="Bankist logo"
+          class="nav__logo"
+          id="logo"
+        />
         <ul class="nav__links">
           <li class="nav__item">
-            <a href="" class="nav__link">Features</a>
+            <a class="nav__link" href="#section--1">Features</a>
           </li>
-
           <li class="nav__item">
-            <a href="" class="nav__link">Operations</a>
+            <a class="nav__link" href="#section--2">Operations</a>
           </li>
-
           <li class="nav__item">
-            <a href="" class="nav__link">Testimonials</a>
+            <a class="nav__link" href="#section--3">Testimonials</a>
           </li>
-
           <li class="nav__item">
-            <a href="" class="nav__link">Open account</a>
+            <a class="nav__link nav__link--btn btn--show-modal" href="#"
+              >Open account</a
+            >
           </li>
         </ul>
       </nav>
 
       <div class="header__title">
         <h1>
-          When <span class="highlight">banking</span> meets <br />
+          When
+          <!-- Green highlight effect -->
+          <span class="highlight">banking</span>
+          meets<br />
           <span class="highlight">minimalist</span>
         </h1>
         <h4>A simpler banking experience for a simpler life.</h4>
-        <button class="btn--taxt">Learn more &DownArrow;</button>
-        <img src="" alt="Minimalist bank items" class="header__img" />
+        <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
+        <img
+          src="img/hero.png"
+          class="header__img"
+          alt="Minimalist bank items"
+        />
       </div>
     </header>
 
     <!-- Section 1 start -->
     <section class="section" id="section--1">
-      <!-- title -->
       <div class="section__title">
         <h2 class="section__description">Features</h2>
         <h3 class="section__header">
@@ -57,7 +68,6 @@
         </h3>
       </div>
 
-      <!-- features -->
       <div class="features">
         <img
           src="img/digital-lazy.jpg"
@@ -67,9 +77,7 @@
         />
         <div class="features__feature">
           <div class="features__icon">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-monitor"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="features__header">100% digital bank</h5>
           <p>
@@ -81,9 +89,7 @@
 
         <div class="features__feature">
           <div class="features__icon">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-trending-up"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="features__header">Watch your money grow</h5>
           <p>
@@ -92,8 +98,6 @@
             quibusdam!
           </p>
         </div>
-
-        <!-- images -->
         <img
           src="img/grow-lazy.jpg"
           data-src="img/grow.jpg"
@@ -109,9 +113,7 @@
         />
         <div class="features__feature">
           <div class="features__icon">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-credit-card"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="features__header">Free debit card included</h5>
           <p>
@@ -151,9 +153,7 @@
           class="operations__content operations__content--1 operations__content--active"
         >
           <div class="operations__icon operations__icon--1">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-upload"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="operations__header">
             Tranfser money to anyone, instantly! No fees, no BS.
@@ -168,9 +168,7 @@
 
         <div class="operations__content operations__content--2">
           <div class="operations__icon operations__icon--2">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-home"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="operations__header">
             Buy a home or make your dreams come true, with instant loans.
@@ -184,9 +182,7 @@
         </div>
         <div class="operations__content operations__content--3">
           <div class="operations__icon operations__icon--3">
-            <svg>
-              <use xlink:href="img/icons.svg#icon-user-x"></use>
-            </svg>
+            <img src="img/icons.png" alt="" />
           </div>
           <h5 class="operations__header">
             No longer need your account? No problem! Close it instantly.
@@ -210,6 +206,7 @@
         </h3>
       </div>
 
+      <!-- start slider -->
       <div class="slider">
         <div class="slide slide--1">
           <div class="testimonial">
@@ -318,7 +315,10 @@
         </li>
       </ul>
       <img src="img/icon.png" alt="Logo" class="footer__logo" />
-      <p class="footer__copyright">&copy; Copyright 2023</p>
+      <p class="footer__copyright">
+        &copy; Copyright 2023
+        <a class="footer__link twitter-link" target="_blank" href="#"></a>
+      </p>
     </footer>
 
     <!-- Start Modal hidden -->
