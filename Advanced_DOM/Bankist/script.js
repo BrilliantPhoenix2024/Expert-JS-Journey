@@ -121,7 +121,6 @@ tabsContainer.addEventListener('click', function (e) {
 });
 
 /////////////////////////////////
-
 // Menu fade animation
 const handelHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
@@ -153,3 +152,12 @@ nav.addEventListener('mouseover', handelHover.bind(0.5));
 // Solution 2:
 // Passing "arguments" into event handlers
 nav.addEventListener('mouseout', handelHover.bind(1));
+
+////////////////////////////////////
+// Sticky navigation
+// Implementing a Sticky navigation: The scroll Event
+const initialCoords = section1.getBoundingClientRect();
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
