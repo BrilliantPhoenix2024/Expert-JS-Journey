@@ -154,10 +154,28 @@ nav.addEventListener('mouseover', handelHover.bind(0.5));
 nav.addEventListener('mouseout', handelHover.bind(1));
 
 ////////////////////////////////////
-// Sticky navigation
+// Sticky navigation, Solution 1:
 // Implementing a Sticky navigation: The scroll Event
-const initialCoords = section1.getBoundingClientRect();
-window.addEventListener('scroll', function () {
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+// const initialCoords = section1.getBoundingClientRect();
+// window.addEventListener('scroll', function () {
+//   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
+
+////////////////////////////////////
+// Sticky navigation: The Intersection Observer API, Solution 2:
+const header = document.querySelector('.header');
+const navHight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHight}px`,
 });
+headerObserver.observe(header);
