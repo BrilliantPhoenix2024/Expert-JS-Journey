@@ -22,6 +22,7 @@ if (navigator.geolocation)
       const coords = [latitude, longitude];
 
       const map = L.map('map').setView(coords, 13);
+      // console.log(map);
 
       L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         attribution:
@@ -32,6 +33,25 @@ if (navigator.geolocation)
         .addTo(map)
         .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
         .openPopup();
+
+      map.on('click', function (mapEvent) {
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: 'running-popup',
+            })
+          )
+          .setTooltipContent('Workout')
+          .openPopup();
+      });
     },
     function () {
       alert('Could not get your position');
