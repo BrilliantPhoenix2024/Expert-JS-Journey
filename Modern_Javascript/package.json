@@ -1,24 +1,15 @@
 {
-  "name": "expert_js_journey",
+  "name": "modern_javascript",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "script.js",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BrilliantPhoenix2024/Expert-JS-Journey-.git"
-  },
-  "author": "",
+  "author": "Atefeh",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BrilliantPhoenix2024/Expert-JS-Journey-/issues"
-  },
-  "homepage": "https://github.com/BrilliantPhoenix2024/Expert-JS-Journey-#readme",
   "dependencies": {
-    "leaflet": "^1.9.3",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
