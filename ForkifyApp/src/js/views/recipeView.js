@@ -10,10 +10,19 @@ class RecipeView extends View {
   _errorMessage = 'We could not find that recipe, Please try another one!';
   _message = '';
 
-
-
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn--update-servings ');
+      if (!btn) return;
+      console.log(btn);
+      const { updateTo } = btn.dataset;
+
+      if (+updateTo > 0) handler(+updateTo);
+    });
   }
 
   _generateMarkup() {
@@ -47,12 +56,16 @@ ${icons}#icon-users"></#icon-clock>
         <span class="recipe__info-text">servings</span>
 
         <div class="recipe__info-buttons">
-          <button class="btn--tiny btn--increase-servings">
+          <button class="btn--tiny btn--update-servings" data-update-to="${
+            this._data.servings - 1
+          }">
             <svg>
               <use href="${icons}#icon-minus-circle"></use>
             </svg>
           </button>
-          <button class="btn--tiny btn--increase-servings">
+          <button class="btn--tiny btn--update-servings" data-update-to="${
+            this._data.servings + 1
+          }">
             <svg>
               <use href="${icons}#icon-plus-circle"></use>
             </svg>
@@ -61,9 +74,9 @@ ${icons}#icon-users"></#icon-clock>
       </div>
 
       <div class="recipe__user-generated">
-        // <svg>
-        //   <use href="${icons}#icon-user"></use>
-        // </svg>
+      <svg>
+        <use href="${icons}#icon-user"></use>
+      </svg>
       </div>
       <button class="btn--round">
         <svg class="">
