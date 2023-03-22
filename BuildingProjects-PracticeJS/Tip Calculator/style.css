@@ -6,9 +6,9 @@
 
 .myCal {
   width: 350px;
-  height: 350px;
+  height: 150px;
   background-color: dimgray;
-  padding: 5px;
+  padding: 25px;
 }
 
 .output {
@@ -23,15 +23,18 @@
   padding: 0 8px;
 }
 
+input {
+  height: 40px;
+}
+
 .btn {
-  width: 50px;
-  height: 50px;
-  padding: 7px;
+  width: 80px;
+  height: 40px;
+  padding: 5px;
   margin: 3px;
   background-color: azure;
   text-align: center;
   font-size: 1.5em;
   cursor: pointer;
   vertical-align: middle;
-  line-height: 50px;
 }
