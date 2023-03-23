@@ -13,5 +13,22 @@ document.addEventListener('DOMContentLoaded', function () {
   myOutput.innerHTML = '0';
   myOutput.classList.add('output');
   myCalculator.appendChild(myOutput);
-  console.log(myOutput);
+  for (let y = 0; y < myKeys.length; y++) {
+    let div = document.createElement('div');
+    div.classList.add('row');
+    for (let x = 0; x < myKeys[y].length; x++) {
+      //   console.log(myKeys[y][x]);
+      let btn = document.createElement('div');
+      btn.innerHTML = myKeys[y][x];
+      btn.classList.add('btn');
+      btn.addEventListener('click', btnHit);
+      div.appendChild(btn);
+    }
+    myCalculator.appendChild(div);
+    console.log(div);
+  }
 });
+
+function btnHit(e) {
+  console.log(e);
+}

@@ -16,11 +16,16 @@
   background-color: white;
   color: green;
   height: 40px;
-  margin: 10px;
+  margin: 3px;
   font-size: 1.4em;
   text-align: right;
   font-family: monospace;
   padding: 0 8px;
+}
+
+.row {
+  width: 100%;
+  display: block;
 }
 
 .btn {
@@ -34,4 +39,5 @@
   text-align: center;
   vertical-align: middle;
   font-size: 1.5em;
+  display: inline-block;
 }
