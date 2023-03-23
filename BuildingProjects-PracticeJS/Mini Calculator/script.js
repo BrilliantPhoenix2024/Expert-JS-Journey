@@ -37,6 +37,9 @@ function btnHit(e) {
   if (myCal === '0') {
     myCal = '';
   }
+  if (myOper.includes(myValue)) {
+    myCal = eval(myCal + myValue);
+  }
   myCal = myCal + myValue;
   myOutput.innerText = myCal;
 }
