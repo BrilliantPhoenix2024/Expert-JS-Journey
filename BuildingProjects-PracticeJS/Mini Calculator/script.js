@@ -37,15 +37,23 @@ function btnHit(e) {
   if (myCal === '0') {
     myCal = '';
   }
-  let lastChar = myCal.substring(myCal.length - 1);
 
-  if (myOper.includes(myValue)) {
-    if (myOper.includes(lastChar)) {
-      myCal = myCal.substring(0, myCal.length - 1);
-    } else {
-      myCal = eval(myCal);
+  if (myValue == '=') {
+    myCal = eval(myCal);
+  } else {
+    let lastChar = myCal.substring(myCal.length - 1);
+
+    if (myOper.includes(myValue)) {
+      if (myOper.includes(lastChar)) {
+        myCal = myCal.substring(0, myCal.length - 1);
+      } else {
+        myCal = eval(myCal);
+      }
     }
+    myCal = myCal + myValue;
   }
-  myCal = myCal + myValue;
+  if (myValue == 'C') {
+    myCal = 0;
+  }
   myOutput.innerText = myCal;
 }
