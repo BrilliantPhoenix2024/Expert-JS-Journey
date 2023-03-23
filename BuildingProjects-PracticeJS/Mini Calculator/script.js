@@ -6,7 +6,7 @@ const myKeys = [
   ['C', '0', '=', '/'],
 ];
 const myOper = ['+', '-', '*', '/'];
-let myOut;
+let myOutput;
 
 document.addEventListener('DOMContentLoaded', function () {
   myOutput = document.createElement('div');
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let div = document.createElement('div');
     div.classList.add('row');
     for (let x = 0; x < myKeys[y].length; x++) {
-      //   console.log(myKeys[y][x]);
       let btn = document.createElement('div');
       btn.innerHTML = myKeys[y][x];
       btn.classList.add('btn');
@@ -25,16 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
       div.appendChild(btn);
     }
     myCalculator.appendChild(div);
-    console.log(div);
   }
 });
 
 function btnHit(e) {
-  console.log(e);
-  console.log(this.innerText);
   let myValue = this.innerText;
   let myCal = myOutput.innerText;
-  if (myCal === '0') {
+  if (myCal == '0') {
     myCal = '';
   }
 
@@ -52,8 +48,10 @@ function btnHit(e) {
     }
     myCal = myCal + myValue;
   }
+
   if (myValue == 'C') {
     myCal = 0;
   }
+  
   myOutput.innerText = myCal;
 }
