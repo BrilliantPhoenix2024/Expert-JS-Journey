@@ -37,8 +37,14 @@ function btnHit(e) {
   if (myCal === '0') {
     myCal = '';
   }
+  let lastChar = myCal.substring(myCal.length - 1);
+
   if (myOper.includes(myValue)) {
-    myCal = eval(myCal + myValue);
+    if (myOper.includes(lastChar)) {
+      myCal = myCal.substring(0, myCal.length - 1);
+    } else {
+      myCal = eval(myCal);
+    }
   }
   myCal = myCal + myValue;
   myOutput.innerText = myCal;
