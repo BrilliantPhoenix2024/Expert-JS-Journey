@@ -31,4 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function btnHit(e) {
   console.log(e);
+  console.log(this.innerText);
+  let myValue = this.innerText;
+  let myCal = myOutput.innerText;
+  if (myCal === '0') {
+    myCal = '';
+  }
+  myCal = myCal + myValue;
+  myOutput.innerText = myCal;
 }
