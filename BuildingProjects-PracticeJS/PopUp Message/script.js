@@ -8,7 +8,7 @@ closeBtn.addEventListener('click', function () {
 });
 
 for (let x = 0; x < popups.length; x++) {
-  console.log(popups[x]);
+//   console.log(popups[x]);
   popups[x].addEventListener('click', function () {
     // console.log(this);
     let outputText = this.getAttribute('data-message');
