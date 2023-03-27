@@ -14,3 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
   myBlock.style.left = "150px";
   document.body.appendChild(myBlock);
 });
+
+function goLeft() {
+  let temp = myBlock.offsetLeft;
+  temp -= 50;
+  myBlock.style.left = temp + "px";
+}
+
+function goRight() {
+  let temp = myBlock.offsetLeft;
+  temp += 50;
+  myBlock.style.left = temp + "px";
+}
+
+function goTop() {
+  let temp = myBlock.offsetTop;
+  temp -= 50;
+  myBlock.style.top = temp + "px";
+}
+
+function goDown() {
+  let temp = myBlock.offsetTop;
+  temp += 50;
+  myBlock.style.top = temp + "px";
+}
