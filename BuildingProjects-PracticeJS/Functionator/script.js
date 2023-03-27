@@ -22,8 +22,13 @@ document.addEventListener("keydown", function (e) {
   else if (keyC === 38) goTop();
   else if (keyC === 39) goRight();
   else if (keyC === 40) goDown();
+  else if (keyC === 67) myBlock.style.backgroundColor = randomColor();
   console.log(e.keyCode);
 });
+
+function randomColor() {
+  return "#" + Math.random().toString(16).substr(-6);
+}
 
 function goLeft() {
   let temp = myBlock.offsetLeft;
