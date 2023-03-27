@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(myBlock);
 });
 
+document.addEventListener("keydown", function (e) {
+  e.preventDefault();
+  let keyC = e.keyCode;
+  if (keyC === 37) goLeft();
+  else if (keyC === 38) goTop();
+  else if (keyC === 39) goRight();
+  else if (keyC === 40) goDown();
+  console.log(e.keyCode);
+});
+
 function goLeft() {
   let temp = myBlock.offsetLeft;
   temp -= 50;
