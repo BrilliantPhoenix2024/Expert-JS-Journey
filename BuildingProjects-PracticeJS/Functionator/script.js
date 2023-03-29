@@ -80,6 +80,14 @@ function addFun(value) {
     this.style.backgroundColor = "white";
     this.style.color = "black";
   });
+  span.addEventListener("click", function () {
+    let curIndex = funList.indexOf(this);
+    console.log(curIndex);
+    let tempRemove = funList.splice(curIndex, 1);
+    console.log(tempRemove);
+    myFunctionList.removeChild(this);
+  });
+
   myFunctionList.appendChild(span);
   funList.push(span);
 
