@@ -1,6 +1,7 @@
 let myBlock;
 let myFunctionList;
 let funList = [];
+const movmentArray = ["up", "down", "right", "left"];
 document.addEventListener("DOMContentLoaded", function () {
   console.log("ready!");
   myBlock = document.createElement("div");
@@ -27,10 +28,13 @@ document.addEventListener("keydown", function (e) {
   else if (keyC === 39) addFun("right");
   else if (keyC === 40) addFun("down");
   else if (keyC === 67) myBlock.style.backgroundColor = randomColor();
-  else if (keyC === 13 || keyC === 32) {
+  else if (keyC === 82) {
+    let temp = movmentArray[Math.floor(Math.random() * movmentArray.length)];
+    addFun(temp);
+  } else if (keyC === 13 || keyC === 32) {
     mover();
   }
-  // console.log(e.keyCode);
+  console.log(e.keyCode);
 });
 
 function mover() {
@@ -52,11 +56,14 @@ function mover() {
     if (item == "down") {
       myBlock.style.top = cur.top + cur.height + "px";
     }
-    setTimeout(mover, 200)
-    console.log(item);
-    // console.log(el);
-    // console.log(cur);
+    setTimeout(mover, 300);
+  } else {
+    myBlock.innerHTML = "Set Path";
+    return;
   }
+  // console.log(item);
+  // console.log(el);
+  // console.log(cur);
 }
 
 function addFun(value) {
