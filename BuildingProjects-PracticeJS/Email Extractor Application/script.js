@@ -18,5 +18,8 @@ btn.addEventListener("click", function () {
   counter.innerHTML = holder.length + " Emails Found.";
   finTxt.innerHTML = tempHolder;
 });
+finTxt.addEventListener("click", function () {
+  this.select();
+});
 
 // https://regexr.com/
