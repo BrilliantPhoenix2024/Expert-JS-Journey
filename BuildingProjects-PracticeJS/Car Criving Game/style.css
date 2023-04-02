@@ -2,7 +2,7 @@
   display: none;
 }
 
-.car,
+/* .car,
 .enemy {
   position: absolute;
   bottom: 100px;
@@ -14,7 +14,7 @@
   font-size: 1.7em;
   text-align: center;
   vertical-align: middle;
-  /* background-image: url(); */
+  background-image: url();
   background-size: cover;
 }
 
@@ -38,7 +38,7 @@
 .gameArea {
   background-color: black;
   width: 400px;
-  height: 100px;
+  height: 100vh;
   overflow: hidden;
   position: relative;
   margin: auto;
@@ -56,4 +56,4 @@
   margin: auto;
   width: 50%;
   font-family: sans-serif;
-}
+} */
