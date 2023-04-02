@@ -5,3 +5,9 @@ let palyer = {
   speed: 5,
   score: 0,
 };
+
+startScreen.addEventListener("click", start);
+
+function start() {
+    console.log('click');
+}
