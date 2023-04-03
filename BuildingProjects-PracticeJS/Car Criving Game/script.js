@@ -16,9 +16,22 @@ startScreen.addEventListener("click", start);
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
 
+function moveLines() {
+  let lines = document.querySelectorAll(".line");
+  lines.forEach(function (item) {
+    console.log(item.y);
+    if (item.y > 750) {
+      item.y -= 750;
+    }
+    item.y += palyer.speed;
+    item.style.top = item.y + "px";
+  });
+}
+
 function playGame() {
   // console.log("inplay");
   let car = document.querySelector(".car");
+  moveLines();
   let road = gameArea.getBoundingClientRect();
   // console.log(road);
   // console.log(palyer.x);
@@ -62,6 +75,7 @@ function start() {
   for (let x = 0; x < 5; x++) {
     let div = document.createElement("div");
     div.classList.add("line");
+    div.y = x * 150;
     div.style.top = x * 150 + "px";
     gameArea.appendChild(div);
   }
