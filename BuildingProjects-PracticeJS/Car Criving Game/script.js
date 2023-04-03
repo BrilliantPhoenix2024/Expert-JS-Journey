@@ -17,19 +17,22 @@ document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
 
 function playGame() {
-  console.log("inplay");
+  // console.log("inplay");
   let car = document.querySelector(".car");
+  let road = gameArea.getBoundingClientRect();
+  console.log(road);
+  console.log(palyer.x);
   if (palyer.start) {
-    if (keys.ArrowUp) {
+    if (keys.ArrowUp && palyer.y > road.top) {
       palyer.y -= palyer.speed;
     }
-    if (keys.ArrowDown) {
+    if (keys.ArrowDown && palyer.y < road.bottom) {
       palyer.y += palyer.speed;
     }
-    if (keys.ArrowLeft) {
+    if (keys.ArrowLeft && palyer.x > 0) {
       palyer.x -= palyer.speed;
     }
-    if (keys.ArrowRight) {
+    if (keys.ArrowRight && palyer.x < road.width - 50) {
       palyer.x += palyer.speed;
     }
     car.style.left = palyer.x + "px";
