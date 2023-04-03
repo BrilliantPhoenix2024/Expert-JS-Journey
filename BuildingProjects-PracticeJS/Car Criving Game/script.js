@@ -20,8 +20,8 @@ function playGame() {
   // console.log("inplay");
   let car = document.querySelector(".car");
   let road = gameArea.getBoundingClientRect();
-  console.log(road);
-  console.log(palyer.x);
+  // console.log(road);
+  // console.log(palyer.x);
   if (palyer.start) {
     if (keys.ArrowUp && palyer.y > road.top) {
       palyer.y -= palyer.speed;
@@ -59,6 +59,12 @@ function start() {
   startScreen.classList.add("hide");
   gameArea.classList.remove("hide");
   palyer.start = true;
+  for (let x = 0; x < 5; x++) {
+    let div = document.createElement("div");
+    div.classList.add("line");
+    div.style.top = x * 150 + "px";
+    gameArea.appendChild(div);
+  }
   window.requestAnimationFrame(playGame);
   let car = document.createElement("div");
   car.innerText = "Car";
@@ -67,5 +73,5 @@ function start() {
   gameArea.appendChild(car);
   palyer.x = car.offsetLeft;
   palyer.y = car.offsetTop;
-  console.log(palyer);
+  // console.log(palyer);
 }
