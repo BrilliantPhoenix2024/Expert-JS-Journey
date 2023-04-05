@@ -2,10 +2,11 @@
   display: none;
 }
 
-.car {
+.car,
+.enemy {
   position: absolute;
   bottom: 100px;
-  left: 200px;
+  left: 100px;
   margin: auto;
   width: 50px;
   height: 150px;
@@ -22,7 +23,7 @@
   position: absolute;
   height: 100px;
   width: 10px;
-  margin-left: 195px;
+  margin-left: 105px;
   background-color: white;
 }
 
@@ -37,7 +38,7 @@
 
 .gameArea {
   background-color: black;
-  width: 400px;
+  width: 200px;
   height: 800px;
   overflow: hidden;
   position: relative;

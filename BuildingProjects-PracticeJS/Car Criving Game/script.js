@@ -19,9 +19,22 @@ document.addEventListener("keyup", pressOff);
 function moveLines() {
   let lines = document.querySelectorAll(".line");
   lines.forEach(function (item) {
-    console.log(item.y);
+    // console.log(item.y);
     if (item.y > 750) {
       item.y -= 750;
+    }
+    item.y += palyer.speed;
+    item.style.top = item.y + "px";
+  });
+}
+
+function moveEnemy() {
+  let ele = document.querySelectorAll(".enemy");
+  ele.forEach(function (item) {
+    // console.log(item.y);
+    if (item.y >= 1500) {
+      item.y = -600;
+      item.style.left = Math.floor(Math.random() * 150) + "px";
     }
     item.y += palyer.speed;
     item.style.top = item.y + "px";
@@ -32,6 +45,7 @@ function playGame() {
   // console.log("inplay");
   let car = document.querySelector(".car");
   moveLines();
+  moveEnemy();
   let road = gameArea.getBoundingClientRect();
   // console.log(road);
   // console.log(palyer.x);
@@ -88,4 +102,13 @@ function start() {
   palyer.x = car.offsetLeft;
   palyer.y = car.offsetTop;
   // console.log(palyer);
+  for (let x = 0; x < 3; x++) {
+    let enemy = document.createElement("div");
+    enemy.classList.add("enemy");
+    enemy.y = (x + 1) * 600 * -1;
+    enemy.style.top = enemy.y + "px";
+    enemy.style.left = Math.floor(Math.random() * 430) + "px";
+    enemy.style.backgroundColor = "red";
+    gameArea.appendChild(enemy);
+  }
 }
