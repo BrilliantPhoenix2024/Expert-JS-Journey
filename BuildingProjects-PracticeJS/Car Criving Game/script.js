@@ -108,7 +108,8 @@ function endGame() {
 function start() {
   //   console.log("click");
   startScreen.classList.add("hide");
-  gameArea.classList.remove("hide");
+  // gameArea.classList.remove("hide");
+  gameArea.innerHTML = "";
   palyer.start = true;
   palyer.score = 0;
   for (let x = 0; x < 10; x++) {
