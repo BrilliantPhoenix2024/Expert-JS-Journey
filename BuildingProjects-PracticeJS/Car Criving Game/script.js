@@ -28,9 +28,24 @@ function moveLines() {
   });
 }
 
-function moveEnemy() {
+function isCollide(a, b) {
+  let aRect = a.getBoundingClientRect();
+  let bRect = b.getBoundingClientRect();
+
+  return !(
+    aRect.bottom < bRect.top ||
+    aRect.top > bRect.bottom ||
+    aRect.right < bRect.left ||
+    aRect.left > bRect.right
+  );
+}
+
+function moveEnemy(car) {
   let ele = document.querySelectorAll(".enemy");
   ele.forEach(function (item) {
+    if (isCollide(car, item)) {
+      console.log("HIT");
+    }
     // console.log(item.y);
     if (item.y >= 1500) {
       item.y = -600;
@@ -45,7 +60,7 @@ function playGame() {
   // console.log("inplay");
   let car = document.querySelector(".car");
   moveLines();
-  moveEnemy();
+  moveEnemy(car);
   let road = gameArea.getBoundingClientRect();
   // console.log(road);
   // console.log(palyer.x);
@@ -72,13 +87,13 @@ function playGame() {
 function pressOn(e) {
   e.preventDefault();
   keys[e.key] = true;
-  console.log(keys);
+  // console.log(keys);
 }
 
 function pressOff(e) {
   e.preventDefault();
   keys[e.key] = false;
-  console.log(keys);
+  // console.log(keys);
 }
 
 function start() {
@@ -107,7 +122,7 @@ function start() {
     enemy.classList.add("enemy");
     enemy.y = (x + 1) * 600 * -1;
     enemy.style.top = enemy.y + "px";
-    enemy.style.left = Math.floor(Math.random() * 430) + "px";
+    enemy.style.left = Math.floor(Math.random() * 150) + "px";
     enemy.style.backgroundColor = "red";
     gameArea.appendChild(enemy);
   }
