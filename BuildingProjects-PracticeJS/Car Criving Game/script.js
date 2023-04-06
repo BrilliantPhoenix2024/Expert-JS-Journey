@@ -50,7 +50,7 @@ function moveEnemy(car) {
     // console.log(item.y);
     if (item.y >= 1500) {
       item.y = -600;
-      item.style.left = Math.floor(Math.random() * 150) + "px";
+      item.style.left = Math.floor(Math.random() * 350) + "px";
     }
     item.y += palyer.speed;
     item.style.top = item.y + "px";
@@ -75,7 +75,7 @@ function playGame() {
     if (keys.ArrowLeft && palyer.x > 0) {
       palyer.x -= palyer.speed;
     }
-    if (keys.ArrowRight && palyer.x < road.width - 50) {
+    if (keys.ArrowRight && palyer.x < road.width - 55) {
       palyer.x += palyer.speed;
     }
     car.style.left = palyer.x + "px";
@@ -133,7 +133,7 @@ function start() {
     enemy.classList.add("enemy");
     enemy.y = (x + 1) * 600 * -1;
     enemy.style.top = enemy.y + "px";
-    enemy.style.left = Math.floor(Math.random() * 150) + "px";
+    enemy.style.left = Math.floor(Math.random() * 350) + "px";
     enemy.style.backgroundColor = "red";
     gameArea.appendChild(enemy);
   }
