@@ -44,13 +44,14 @@ function moveEnemy(car) {
   let ele = document.querySelectorAll(".enemy");
   ele.forEach(function (item) {
     if (isCollide(car, item)) {
-      console.log("HIT");
+      // console.log("HIT");
       endGame();
     }
     // console.log(item.y);
     if (item.y >= 1500) {
       item.y = -600;
       item.style.left = Math.floor(Math.random() * 350) + "px";
+      // item.style.backgroundColor = randomColor();
     }
     item.y += palyer.speed;
     item.style.top = item.y + "px";
@@ -134,7 +135,15 @@ function start() {
     enemy.y = (x + 1) * 600 * -1;
     enemy.style.top = enemy.y + "px";
     enemy.style.left = Math.floor(Math.random() * 350) + "px";
-    enemy.style.backgroundColor = "red";
+    enemy.style.backgroundColor = "red"; // randomColor()
     gameArea.appendChild(enemy);
   }
 }
+
+// function randomColor() {
+//   function c() {
+//     let hex = Math.floor(Math.random() * 255).toString(16);
+//     return ("0" + String(hex)).substr(-2);
+//   }
+//   return "#" + c() + c() + c();
+// }
