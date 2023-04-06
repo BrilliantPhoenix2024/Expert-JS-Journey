@@ -121,7 +121,7 @@ function start() {
   }
   window.requestAnimationFrame(playGame);
   let car = document.createElement("div");
-  car.innerText = "Car";
+  car.innerText = "You";
   car.setAttribute("class", "car");
 
   gameArea.appendChild(car);
