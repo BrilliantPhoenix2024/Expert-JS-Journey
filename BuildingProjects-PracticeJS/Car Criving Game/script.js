@@ -3,7 +3,7 @@ const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
 let palyer = {
   speed: 5,
-  //   score: 0,
+  score: 0,
 };
 let keys = {
   ArrowUp: false,
@@ -20,8 +20,8 @@ function moveLines() {
   let lines = document.querySelectorAll(".line");
   lines.forEach(function (item) {
     // console.log(item.y);
-    if (item.y > 750) {
-      item.y -= 750;
+    if (item.y >= 1500) {
+      item.y -= 1500;
     }
     item.y += palyer.speed;
     item.style.top = item.y + "px";
@@ -45,6 +45,7 @@ function moveEnemy(car) {
   ele.forEach(function (item) {
     if (isCollide(car, item)) {
       console.log("HIT");
+      endGame();
     }
     // console.log(item.y);
     if (item.y >= 1500) {
@@ -81,6 +82,8 @@ function playGame() {
     car.style.top = palyer.y + "px";
 
     window.requestAnimationFrame(playGame);
+    palyer.score++;
+    score.innerText = "Score: " + palyer.score;
   }
 }
 
@@ -96,12 +99,19 @@ function pressOff(e) {
   // console.log(keys);
 }
 
+function endGame() {
+  palyer.start = false;
+  score.innerHTML = "Game Over <br> Your Score: " + palyer.score;
+  startScreen.classList.remove("hide");
+}
+
 function start() {
   //   console.log("click");
   startScreen.classList.add("hide");
   gameArea.classList.remove("hide");
   palyer.start = true;
-  for (let x = 0; x < 5; x++) {
+  palyer.score = 0;
+  for (let x = 0; x < 10; x++) {
     let div = document.createElement("div");
     div.classList.add("line");
     div.y = x * 150;
