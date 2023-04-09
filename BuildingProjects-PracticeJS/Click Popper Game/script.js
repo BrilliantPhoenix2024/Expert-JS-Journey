@@ -15,6 +15,14 @@ playArea.btns.forEach(function (item) {
   item.addEventListener("click", handleBtn);
 });
 
-function handleBtn() {
-  console.log("hello");
+function handleBtn(e) {
+  console.log(e.target.classList.contains("newGame"));
+  if (e.target.classList.contains("newGame")) {
+    console.log("YES");
+    startGame();
+  }
+}
+
+function startGame() {
+  console.log("start");
 }
