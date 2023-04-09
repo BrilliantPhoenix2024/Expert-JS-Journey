@@ -1,0 +1,17 @@
+.btn {
+  cursor: pointer;
+  padding: 15px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+.page {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
