@@ -43,6 +43,24 @@ function startGame() {
   playArea.main.classList.remove("visible");
   playArea.game.classList.add("visible");
   console.log("start");
+  player.gameOver = false;
+  startPop();
+}
+
+function randomUp() {
+  const pops = document.querySelectorAll(".pop");
+  const idx = Math.floor(Math.random() * pops.length);
+  if (pops[idx].cnt == playArea.last) {
+    return randomUp();
+  }
+  playArea.last = pops[idx].cnt;
+  return pops[idx];
+}
+
+function startPop() {
+  let newPop = randomUp();
+  console.log(newPop);
+  newPop.classList.add("active");
 }
 
 function buildBoard() {
