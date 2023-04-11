@@ -15,3 +15,23 @@
 .visible {
   display: block;
 }
+
+.pop {
+  border: 1px solid #ddd;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  color: #ddd;
+  font-size: 2em;
+  font-family: fantasy;
+}
+
+.row {
+  display: block;
+}
+
+.game {
+  border: 1px solid black;
+}

@@ -24,6 +24,7 @@ function getData() {
       console.log(data);
       gameObj = data.data;
       console.log(gameObj);
+      buildBoard();
     });
   //   console.log("DOM loaded!");
 }
@@ -42,4 +43,27 @@ function startGame() {
   playArea.main.classList.remove("visible");
   playArea.game.classList.add("visible");
   console.log("start");
+}
+
+function buildBoard() {
+  console.log("ready");
+  let rows = 4;
+  let cols = 4;
+  let cnt = 0;
+  playArea.game.style.width = cols * 100 + cols * 2;
+  playArea.game.style.margin = "auto";
+  for (let y = 0; y < rows; y++) {
+    let divMain = document.createElement("div");
+    divMain.setAttribute("class", "row");
+    divMain.style.width = cols * 100 + cols * 2;
+    for (x = 0; x < cols; x++) {
+      let div = document.createElement("div");
+      div.setAttribute("class", "pop");
+      cnt++;
+      div.innerText = cnt;
+      div.cnt = cnt;
+      divMain.appendChild(div);
+    }
+    playArea.game.appendChild(divMain);
+  }
 }
