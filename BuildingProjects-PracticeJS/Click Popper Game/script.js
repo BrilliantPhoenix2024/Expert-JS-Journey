@@ -29,11 +29,21 @@ function getData() {
   //   console.log("DOM loaded!");
 }
 
+function updateScore() {
+  playArea.score.innerHTML =
+    "Score: " + player.score + "Lives: " + player.items;
+}
+
 function buildBoard() {
-  console.log("ready");
+  playArea.score = document.createElement("span");
+  playArea.score.innerHTML = "Press Button to Start.";
+  playArea.stats.appendChild(playArea.score);
+  // console.log("ready");
+
   let rows = 4;
   let cols = 4;
   let cnt = 0;
+  
   playArea.game.style.width = cols * 100 + cols * 2;
   playArea.game.style.margin = "auto";
   for (let y = 0; y < rows; y++) {
@@ -68,6 +78,7 @@ function startGame() {
   console.log("start");
   player.gameOver = false;
   startPop();
+  updateScore();
 }
 
 function startPop() {
@@ -96,6 +107,7 @@ function hitPop(e) {
   console.log(e.target.v);
   let newPop = e.target;
   player.score = player.score + newPop.v;
+  updateScore();
   newPop.classList.remove("active");
   newPop.removeEventListener("click", hitPop);
   newPop.innerText = newPop.old;
