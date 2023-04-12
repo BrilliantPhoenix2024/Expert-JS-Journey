@@ -43,7 +43,7 @@ function buildBoard() {
   let rows = 4;
   let cols = 4;
   let cnt = 0;
-  
+
   playArea.game.style.width = cols * 100 + cols * 2;
   playArea.game.style.margin = "auto";
   for (let y = 0; y < rows; y++) {
@@ -96,10 +96,26 @@ function startPop() {
     newPop.classList.remove("active");
     newPop.removeEventListener("click", hitPop);
     newPop.innerText = newPop.old;
+
+    if (newPop.v > 0) {
+      player.items--;
+      updateScore();
+    }
+    if (player.items <= 0) {
+      gameOver();
+    }
+
     if (!player.gameOver) {
       startPop();
     }
   }, time);
+}
+
+function gameOver() {
+  player.gameOver = true;
+  playArea.main.classList.add("visible");
+  playArea.game.classList.remove("visible");
+  document.querySelector(".newGame").innerText = "Try Again!";
 }
 
 function hitPop(e) {
