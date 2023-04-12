@@ -10,6 +10,8 @@
 
 .page {
   display: none;
+  margin: auto;
+  margin-top: 40px;
 }
 
 .visible {
@@ -42,4 +44,13 @@
   color: black;
   box-shadow: 5px 5px #555;
   cursor: pointer;
+}
+
+.stats {
+  height: 70px;
+  background-color: black;
+  color: pink;
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 30px;
 }
