@@ -1,0 +1,30 @@
+#player1,
+#player2 {
+  display: inline-block;
+  width: 200px;
+  height: 140px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 25px;
+  text-align: center;
+  font-size: 7em;
+}
+
+#output {
+  width: 550px;
+  text-align: center;
+  font-size: 2em;
+}
+
+button {
+  padding: 10px;
+  text-align: center;
+  width: 550px;
+  background-color: #ff58df;
+  color: white;
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none;
+}
