@@ -22,5 +22,8 @@ button.addEventListener("click", function () {
 
 function roll(number) {
   let randomNum = Math.floor(Math.random() * number) + 1;
-  return randomNum;
+  // Build Dice Face Visual
+  let num = 9855 + randomNum;
+  let char = "&#" + num + ";";
+  return randomNum + "" + char;
 }
