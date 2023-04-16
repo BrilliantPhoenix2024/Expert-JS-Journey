@@ -2,6 +2,7 @@
   width: 550px;
   text-align: center;
   font-size: 2em;
+  margin-bottom: 25px;
 }
 
 button {
@@ -21,6 +22,18 @@ button:focus {
   width: 90px;
   height: 90px;
   border-radius: 10px;
-  padding: 2px;
+  padding: 10px 10px 20px 10px;
   border: 1px solid black;
+}
+
+.black {
+  background-color: black;
+}
+
+.dot {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 2px;
 }

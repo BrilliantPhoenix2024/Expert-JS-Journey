@@ -1,13 +1,21 @@
 const output = document.querySelector(".output");
 const button = document.querySelector("button");
+const dice = [
+  [5],
+  [1, 9],
+  [1, 5, 9],
+  [1, 3, 7, 9],
+  [1, 3, 5, 7, 9],
+  [1, 3, 4, 6, 7, 9],
+];
 
 button.addEventListener("click", function () {
-  console.log("works!");
+  // console.log("works!");
   // Build Roll
   let rollDice = roll(6);
   console.log(rollDice);
   let holder = builder(rollDice);
-  console.log(output.children[0]);
+  // console.log(output.children[0]);
   if (output.children[0]) {
     output.children[0].remove();
   }
@@ -16,6 +24,16 @@ button.addEventListener("click", function () {
 
 function builder(num) {
   let div = document.createElement("div");
+  let diceArray = dice[num - 1];
+  console.log(diceArray);
+  for (let x = 1; x < 10; x++) {
+    let span = document.createElement("div");
+    span.setAttribute("class", "dot");
+    if (diceArray.includes(x)) {
+      span.classList.add("black");
+    }
+    div.appendChild(span);
+  }
   div.setAttribute("class", "dicer");
   return div;
 }
