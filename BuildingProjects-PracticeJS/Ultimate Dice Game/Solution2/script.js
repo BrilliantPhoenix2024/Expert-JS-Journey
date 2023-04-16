@@ -1,12 +1,12 @@
 const output = document.querySelector(".output");
 const button = document.querySelector("button");
 const dice = [
-  [5],
-  [1, 9],
-  [1, 5, 9],
-  [1, 3, 7, 9],
-  [1, 3, 5, 7, 9],
-  [1, 3, 4, 6, 7, 9],
+  [5], // Dice 1
+  [1, 9], // Dice 2
+  [1, 5, 9], // Dice 3
+  [1, 3, 7, 9], // Dice 4
+  [1, 3, 5, 7, 9], // Dice 5
+  [1, 3, 4, 6, 7, 9], // Dice 6
 ];
 
 button.addEventListener("click", function () {
