@@ -2,7 +2,7 @@
   width: 550px;
   text-align: center;
   font-size: 2em;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 button {
@@ -43,7 +43,7 @@ button:focus {
 .viewer {
   display: inline-block;
   width: 211px;
-  height: 150px;
+  height: 180px;
   border: 1px solid black;
   padding: 5px;
   margin: 8px 25px 20px 25px;
