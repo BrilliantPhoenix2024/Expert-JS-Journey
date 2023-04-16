@@ -1,0 +1,25 @@
+.output {
+  width: 550px;
+  text-align: center;
+  font-size: 2em;
+}
+
+button {
+  padding: 10px;
+  text-align: center;
+  width: 550px;
+  background-color: #ff58df;
+  color: white;
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none;
+}
+
+.dicer {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  padding: 2px;
+}
