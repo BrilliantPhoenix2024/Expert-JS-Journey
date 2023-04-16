@@ -30,7 +30,7 @@ function builder(num) {
     let span = document.createElement("div");
     span.setAttribute("class", "dot");
     if (diceArray.includes(x)) {
-      span.classList.add("black");
+      span.classList.add("white");
     }
     div.appendChild(span);
   }

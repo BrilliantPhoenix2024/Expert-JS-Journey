@@ -23,11 +23,13 @@ button:focus {
   height: 90px;
   border-radius: 10px;
   padding: 10px 10px 20px 10px;
-  border: 1px solid black;
+  border: 1px solid white;
+  margin: auto;
+  background-color: #ff58df;
 }
 
-.black {
-  background-color: black;
+.white {
+  background-color: white;
 }
 
 .dot {
@@ -36,4 +38,20 @@ button:focus {
   border-radius: 50%;
   display: inline-block;
   margin: 2px;
+}
+
+.viewer {
+  display: inline-block;
+  width: 211px;
+  height: 150px;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 8px 25px 20px 25px;
+}
+
+.namer {
+  display: inline-block;
+  font-family: cursive;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
