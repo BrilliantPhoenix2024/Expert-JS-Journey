@@ -35,3 +35,26 @@
   border: 1px solid black;
   text-align: center;
 }
+
+.bird {
+  position: absolute;
+  bottom: 100px;
+  left: 50px;
+  width: 50px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.5em;
+  background: #486e0e;
+  border-radius: 40%;
+}
+
+.wing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: gold;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  z-index: 1;
+}

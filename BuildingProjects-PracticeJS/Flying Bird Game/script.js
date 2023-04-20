@@ -13,6 +13,12 @@ function start() {
   console.log("start!");
   gameMessage.classList.add("hide");
   startScreen.classList.add("hide");
+  let bird = document.createElement("div");
+  bird.setAttribute("class", "bird");
+  let wing = document.createElement("span");
+  wing.setAttribute("class", "wing");
+  bird.appendChild(wing);
+  gameArea.appendChild(bird);
 }
 
 function pressOn(e) {
