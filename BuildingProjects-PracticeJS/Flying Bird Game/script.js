@@ -6,7 +6,8 @@ const gameMessage = document.querySelector(".gameMessage");
 gameMessage.addEventListener("click", start);
 startScreen.addEventListener("click", start);
 document.addEventListener("keydown", pressOn);
-document.addEventListener("keyUp", pressOff);
+document.addEventListener("keyup", pressOff);
+let keys = {};
 
 function start() {
   console.log("start!");
@@ -14,10 +15,14 @@ function start() {
   startScreen.classList.add("hide");
 }
 
-function pressOn() {
-  console.log("On!");
+function pressOn(e) {
+  e.preventDefault();
+  keys[e.code] = true;
+  console.log(keys);
 }
 
-function pressOff() {
-  console.log("Off!");
+function pressOff(e) {
+  e.preventDefault();
+  keys[e.code] = false;
+  // console.log(keys);
 }
