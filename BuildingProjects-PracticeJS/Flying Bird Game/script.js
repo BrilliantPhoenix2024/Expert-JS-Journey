@@ -12,7 +12,8 @@ let player = {};
 
 function start() {
   console.log("start!");
-  player.speed = 10;
+  player.speed = 2;
+  player.score = 0;
   gameMessage.classList.add("hide");
   startScreen.classList.add("hide");
   let bird = document.createElement("div");
@@ -43,7 +44,7 @@ function playGame() {
     move = true;
   }
   if ((keys.ArrowUp || keys.Space) && player.y > 0) {
-    player.y -= player.speed;
+    player.y -= player.speed * 5;
     move = true;
   }
   if (keys.ArrowDown && player.y < gameArea.offsetHight - 50) {
@@ -54,11 +55,17 @@ function playGame() {
     wing.pos = wing.pos == 15 ? 25 : 15;
     wing.style.top = wing.pos + "px";
   }
+  player.y += player.speed * 2;
+  if (bird.offsetTop > gameArea.offsetHight) {
+    console.log("Game over!");
+  }
 
   bird.style.top = player.y + "px";
   bird.style.left = player.x + "px";
 
   window.requestAnimationFrame(playGame);
+  player.score++;
+  score.innerText = "Score: " + player.score;
 }
 
 function pressOn(e) {
