@@ -11,7 +11,7 @@
 .game > .gameArea {
   background-color: skyblue;
   width: 100vw;
-  height: 100vh;
+  height: 645px;
   margin: auto;
 }
 
@@ -57,4 +57,14 @@
   height: 22px;
   border-radius: 5px;
   z-index: 1;
+}
+
+.gameMessage {
+  position: absolute;
+  top: 10%;
+  text-align: center;
+  left: 20%;
+  width: 60%;
+  background-color: #3477b1;
+  font-size: 2em;
 }
