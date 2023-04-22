@@ -12,7 +12,7 @@ let player = {};
 
 function start() {
   console.log("start!");
-  player.speed = 2;
+  player.speed = 10;
   gameMessage.classList.add("hide");
   startScreen.classList.add("hide");
   let bird = document.createElement("div");
@@ -31,16 +31,16 @@ function playGame() {
   let bird = document.querySelector(".bird");
   let wing = document.querySelector(".wing");
 
-  if (keys.ArrowLeft) {
+  if (keys.ArrowLeft && player.x > 0) {
     player.x -= player.speed;
   }
-  if (keys.ArrowRight) {
+  if (keys.ArrowRight && player.x < gameArea.offsetWidth - 50) {
     player.x += player.speed;
   }
-  if (keys.ArrowUp) {
+  if (keys.ArrowUp && player.y > 0) {
     player.y -= player.speed;
   }
-  if (keys.ArrowDown) {
+  if (keys.ArrowDown && player.y < gameArea.offsetHight - 50) {
     player.y += player.speed;
   }
 
