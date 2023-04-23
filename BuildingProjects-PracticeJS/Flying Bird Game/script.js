@@ -22,7 +22,7 @@ function start() {
   bird.setAttribute("class", "bird");
   let wing = document.createElement("span");
   wing.setAttribute("class", "wing");
-  wing.pos = 15;
+  wing.pos = 10;
   wing.style.top = wing.pos + "px";
   bird.appendChild(wing);
   gameArea.appendChild(bird);
@@ -73,11 +73,30 @@ function buildPipes(startPos) {
   gameArea.appendChild(pipe2);
 }
 
+function movePipes(bird) {
+  let lines = document.querySelectorAll(".pipe");
+  let counter = 0; // Count Pips to remove
+  lines.forEach(function (item) {
+    // console.log(item);
+    item.x -= player.speed;
+    item.style.left = item.x + "px";
+    if (item.x < 0) {
+      item.parentElement.removeChild(item);
+      counter++;
+    }
+  });
+  counter = counter / 2;
+  for (let x = 0; x < counter; x++) {
+    buildPipes(0);
+  }
+}
+
 function playGame() {
   // console.log(player);
   if (player.inplay) {
     let bird = document.querySelector(".bird");
     let wing = document.querySelector(".wing");
+    movePipes(bird);
     let move = false;
 
     if (keys.ArrowLeft && player.x > 0) {
@@ -97,7 +116,7 @@ function playGame() {
       move = true;
     }
     if (move) {
-      wing.pos = wing.pos == 15 ? 20 : 15;
+      wing.pos = wing.pos == 10 ? 18 : 10;
       wing.style.top = wing.pos + "px";
     }
     player.y += player.speed * 2;
