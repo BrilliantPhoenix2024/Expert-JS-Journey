@@ -87,6 +87,7 @@ function movePipes(bird) {
     // console.log(isColide(item, bird));
     if (isColide(item, bird)) {
       console.log("Crash!");
+      playGameOver(bird);
     }
   });
   counter = counter / 2;
