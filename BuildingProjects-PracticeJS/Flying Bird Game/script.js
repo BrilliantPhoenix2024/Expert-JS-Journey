@@ -11,7 +11,7 @@ let keys = {};
 let player = {};
 
 function start() {
-  console.log("start!");
+  // console.log("start!");
   player.speed = 4;
   player.score = 0;
   player.inplay = true;
@@ -75,7 +75,7 @@ function buildPipes(startPos) {
 
 function movePipes(bird) {
   let lines = document.querySelectorAll(".pipe");
-  let counter = 0; // Count Pips to remove
+  let counter = 0; // Counts Pips to remove
   lines.forEach(function (item) {
     // console.log(item);
     item.x -= player.speed;
@@ -86,7 +86,7 @@ function movePipes(bird) {
     }
     // console.log(isColide(item, bird));
     if (isColide(item, bird)) {
-      console.log("Crash!");
+      // console.log("Crash!");
       playGameOver(bird);
     }
   });
@@ -155,7 +155,7 @@ function playGame() {
 function playGameOver(bird) {
   player.inplay = false;
   gameMessage.classList.remove("hide");
-  bird.setAttribute("style", "transform:rotate(180deg)");
+  bird.setAttribute("style", "transform:rotate(100deg)");
   gameMessage.innerHTML =
     "Game Over!<br> Your Score " +
     player.score +
