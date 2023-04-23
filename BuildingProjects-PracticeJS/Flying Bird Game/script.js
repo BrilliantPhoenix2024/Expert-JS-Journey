@@ -44,6 +44,7 @@ function buildPipes(startPos) {
   let totalHieght = gameArea.offsetHeight;
   let totalWidth = gameArea.offsetWidth;
   player.pipe++;
+  let pipeColor = randomColor();
 
   let pipe1 = document.createElement("div");
   pipe1.start = startPos + totalWidth;
@@ -55,7 +56,7 @@ function buildPipes(startPos) {
   pipe1.style.top = "0px";
   pipe1.x = pipe1.start;
   pipe1.id = player.pipe;
-  pipe1.style.backgroundColor = "red";
+  pipe1.style.backgroundColor = pipeColor;
   gameArea.appendChild(pipe1);
 
   let pipeSpace = Math.floor(Math.random() * 250) + 150;
@@ -69,8 +70,12 @@ function buildPipes(startPos) {
   pipe2.style.bottom = "0px";
   pipe2.x = pipe1.start;
   pipe2.id = player.pipe;
-  pipe2.style.backgroundColor = "red";
+  pipe2.style.backgroundColor = pipeColor;
   gameArea.appendChild(pipe2);
+}
+
+function randomColor() {
+  return "#" + Math.random().toString(16).substr(-6);
 }
 
 function movePipes(bird) {
@@ -139,7 +144,7 @@ function playGame() {
     }
     player.y += player.speed * 2;
     if (player.y > gameArea.offsetHeight) {
-      console.log("Game over!");
+      // console.log("Game over!");
       playGameOver(bird);
     }
 
