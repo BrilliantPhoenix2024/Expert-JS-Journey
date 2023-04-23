@@ -12,7 +12,7 @@ let player = {};
 
 function start() {
   console.log("start!");
-  player.speed = 2;
+  player.speed = 4;
   player.score = 0;
   player.inplay = true;
   gameArea.innerHTML = "";
@@ -32,7 +32,7 @@ function start() {
   player.pipe = 0;
   let spacing = 300;
   let howMany = Math.floor(gameArea.offsetWidth / spacing);
-  console.log(howMany);
+  // console.log(howMany);
   for (let x = 0; x < howMany; x++) {
     buildPipes(player.pipe * spacing);
   }
@@ -84,11 +84,28 @@ function movePipes(bird) {
       item.parentElement.removeChild(item);
       counter++;
     }
+    // console.log(isColide(item, bird));
+    if (isColide(item, bird)) {
+      console.log("Crash!");
+    }
   });
   counter = counter / 2;
   for (let x = 0; x < counter; x++) {
     buildPipes(0);
   }
+}
+
+function isColide(item, bird) {
+  let itemRect = item.getBoundingClientRect();
+  let birdRect = bird.getBoundingClientRect();
+  // console.log(itemRect);
+
+  return !(
+    itemRect.bottom < birdRect.top ||
+    itemRect.top > birdRect.bottom ||
+    itemRect.right < birdRect.left ||
+    itemRect.left > birdRect.right
+  );
 }
 
 function playGame() {
@@ -147,7 +164,7 @@ function playGameOver(bird) {
 function pressOn(e) {
   e.preventDefault();
   keys[e.code] = true;
-  console.log(keys);
+  // console.log(keys);
 }
 
 function pressOff(e) {
