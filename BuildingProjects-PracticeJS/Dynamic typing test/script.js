@@ -1,5 +1,7 @@
 const wording = [
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid atque eum itaque illum, suscipit, quibusdam debitis earum optio deleniti asperiores, unde maiores at est quos. Accusantium aut asperiores atque totam.",
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+  "Aliquid atque eum itaque illum, suscipit, quibusdam debitis earum optio deleniti asperiores",
+  "Runde maiores at est quos. Accusantium aut asperiores atque totam.",
 ];
 const message = document.querySelector(".message");
 const playText = document.querySelector("textarea");
@@ -12,4 +14,7 @@ button.addEventListener("click", function () {
   }
 });
 
-function playGame() {}
+function playGame() {
+  let randomNum = Math.floor(Math.random() * wording.length);
+  message.innerText = wording[randomNum];
+}
