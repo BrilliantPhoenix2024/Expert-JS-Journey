@@ -5,16 +5,14 @@
 }
 
 textarea {
-  width: 400px;
-  height: 400px;
   margin: 10px 20px;
-  border-color: burlywood;
 }
 
 button {
   padding: 20px 25px;
-  background-color: coral;
+  background-color: #1111e3;
   border: none;
   border-radius: 15px;
   margin: 10px 20px;
+  color: white;
 }
