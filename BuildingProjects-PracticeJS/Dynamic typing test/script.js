@@ -13,16 +13,31 @@ button.addEventListener("click", function () {
   if (this.innerText == "Start") {
     playText.disabled = false;
     playGame();
+  } else if (this.innerText == "Done") {
+    playText.disabled = true;
+    button.innerText = "Start";
+    endPlay();
   }
 });
+
+function endPlay() {
+  let date = new Date();
+  endTime = date.getTime();
+  let totalTime = (endTime - startTime) / 1000;
+  console.log(totalTime);
+  let str = playText.value;
+  // Count words
+  // Divide by total time word/per minute
+  // Output final message to player
+}
 
 function playGame() {
   let randomNum = Math.floor(Math.random() * wording.length);
   message.innerText = wording[randomNum];
   let date = new Date();
-  startTime = date.getTime;
-  console.log(startTime);
+  startTime = date.getTime();
+  // console.log(startTime);
   button.innerText = "Done";
-  
-  console.log(randomNum);
+
+  // console.log(randomNum);
 }
