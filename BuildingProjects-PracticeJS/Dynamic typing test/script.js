@@ -27,8 +27,19 @@ function endPlay() {
   console.log(totalTime);
   let str = playText.value;
   // Count words
+  let wordCount = wordCounter(str);
   // Divide by total time word/per minute
+  let speed = Math.round(wordCount / totalTime) * 60;
+  console.log(speed);
   // Output final message to player
+  let finalMessage = "You typed at " + speed + "words per minute.";
+  message.innerHTML = finalMessage;
+}
+
+function wordCounter(strWords) {
+  let response = strWords.split(" ").length;
+  console.log(response);
+  return response;
 }
 
 function playGame() {
