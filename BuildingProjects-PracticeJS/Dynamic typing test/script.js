@@ -24,21 +24,24 @@ function endPlay() {
   let date = new Date();
   endTime = date.getTime();
   let totalTime = (endTime - startTime) / 1000;
-  console.log(totalTime);
+  // console.log(totalTime);
   let str = playText.value;
   // Count words
   let wordCount = wordCounter(str);
   // Divide by total time word/per minute
   let speed = Math.round(wordCount / totalTime) * 60;
-  console.log(speed);
+  // console.log(speed);
   // Output final message to player
   let finalMessage = "You typed at " + speed + "words per minute.";
+  if (str != message.innerText) {
+    finalMessage += "<br>There were some errors in the wording";
+  }
   message.innerHTML = finalMessage;
 }
 
 function wordCounter(strWords) {
   let response = strWords.split(" ").length;
-  console.log(response);
+  // console.log(response);
   return response;
 }
 
@@ -49,6 +52,5 @@ function playGame() {
   startTime = date.getTime();
   // console.log(startTime);
   button.innerText = "Done";
-
   // console.log(randomNum);
 }
