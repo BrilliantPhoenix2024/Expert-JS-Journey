@@ -9,7 +9,7 @@ const playText = document.querySelector("textarea");
 const button = document.querySelector("button");
 
 button.addEventListener("click", function () {
-  console.log(this.innerText);
+  // console.log(this.innerText);
   if (this.innerText == "Start") {
     playText.disabled = false;
     playGame();
@@ -33,9 +33,8 @@ function endPlay() {
   // console.log(speed);
   // Output final message to player
   let finalMessage = "You typed at " + speed + "words per minute.";
-  if (str != message.innerText) {
-    finalMessage += "<br>There were some errors in the wording";
-  }
+
+  finalMessage += "<br>" + compareWords(message.innerText, str);
   message.innerHTML = finalMessage;
 }
 
@@ -43,6 +42,18 @@ function wordCounter(strWords) {
   let response = strWords.split(" ").length;
   // console.log(response);
   return response;
+}
+
+function compareWords(str1, str2) {
+  let words1 = str1.split(" ");
+  let words2 = str2.split(" ");
+  let cnt = 0;
+  words1.forEach(function (item, index) {
+    if (item == words2[index]) {
+      cnt++;
+    }
+  });
+  return cnt + " correct out of " + words1.length + "words.";
 }
 
 function playGame() {
