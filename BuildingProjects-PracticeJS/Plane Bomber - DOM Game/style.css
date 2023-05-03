@@ -1,0 +1,9 @@
+.plane {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background-image: url(./plane.png);
+  background-size: cover;
+}

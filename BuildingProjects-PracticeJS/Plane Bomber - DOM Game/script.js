@@ -4,9 +4,22 @@ const gameMessage = document.querySelector(".gameMessage");
 
 document.addEventListener("keydown", pressOn);
 document.addEventListener("keyup", pressOff);
+document.addEventListener("click", start);
+let player = {
+  score: 0,
+  speed: 2,
+  inplay: false,
+};
 let keys = {
   space: false,
 };
+
+function start() {
+  player.inplay = true;
+  player.plane = document.createElement("div");
+  player.plane.setAttribute("class", "plane");
+  gameArea.appendChild(player.plane);
+}
 
 function pressOn(e) {
   e.preventDefault();
