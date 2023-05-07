@@ -7,3 +7,17 @@
   background-image: url(./plane.png);
   background-size: cover;
 }
+
+.hide {
+  display: none;
+}
+
+.gameMessage {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  text-align: center;
+  background-color: aliceblue;
+  font-size: 2em;
+}
