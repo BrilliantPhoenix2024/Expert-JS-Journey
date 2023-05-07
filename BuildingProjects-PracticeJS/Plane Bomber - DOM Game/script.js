@@ -19,6 +19,30 @@ function start() {
   player.plane = document.createElement("div");
   player.plane.setAttribute("class", "plane");
   gameArea.appendChild(player.plane);
+  window.requestAnimationFrame(playGame);
+  player.x = player.plane.offsetLeft;
+  player.y = player.plane.offsetTop;
+}
+
+function playGame() {
+  if (player.inplay) {
+    console.log(keys);
+    if (keys.ArrowUp) {
+      player.y -= player.speed;
+    }
+    if (keys.ArrowDown) {
+      player.y += player.speed;
+    }
+    if (keys.ArrowLeft) {
+      player.x -= player.speed;
+    }
+    if (keys.ArrowRight) {
+      player.x += player.speed;
+    }
+    player.plane.style.left = player.x + "px";
+    player.plane.style.top = player.y + "px";
+    window.requestAnimationFrame(playGame);
+  }
 }
 
 function pressOn(e) {
