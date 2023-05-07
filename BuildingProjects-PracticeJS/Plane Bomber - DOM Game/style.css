@@ -21,3 +21,12 @@
   background-color: aliceblue;
   font-size: 2em;
 }
+
+.score {
+  background-color: black;
+  height: 70px;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-family: fantasy;
+}

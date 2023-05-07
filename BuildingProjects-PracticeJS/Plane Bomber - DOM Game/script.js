@@ -31,7 +31,7 @@ function start() {
 function playGame() {
   if (player.inplay) {
     console.log(keys);
-    if (keys.ArrowUp && player.y > 0) {
+    if (keys.ArrowUp && player.y > 80) {
       player.y -= player.speed;
     }
     if (keys.ArrowDown && player.y < 200) {
@@ -53,10 +53,11 @@ function playGame() {
     if (player.score < 0) {
       player.score = 0;
     }
-    
+
     player.plane.style.left = player.x + "px";
     player.plane.style.top = player.y + "px";
     window.requestAnimationFrame(playGame);
+    score.innerHTML = "Score: " + player.score;
   }
 }
 
