@@ -17,6 +17,7 @@ let keys = {
 function start() {
   gameMessage.classList.add("hide");
   if (!player.inplay) {
+    makeEnemy();
     player.inplay = true;
     player.score = 2000;
     player.plane = document.createElement("div");
@@ -26,6 +27,16 @@ function start() {
     player.x = player.plane.offsetLeft;
     player.y = player.plane.offsetTop;
   }
+}
+
+function makeEnemy() {
+  player.base = document.createElement("div");
+  player.base.setAttribute("class", "base");
+  player.base.style.width = Math.floor(Math.random() * 200) + 10 + "px";
+  player.base.style.height = Math.floor(Math.random() * 100) + 100 + "px";
+  player.base.style.left =
+    Math.floor(Math.random() * gameArea.offsetWidth - 200) + 100 + "px";
+  gameArea.appendChild(player.base);
 }
 
 function playGame() {
