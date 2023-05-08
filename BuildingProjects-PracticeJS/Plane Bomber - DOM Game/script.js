@@ -72,7 +72,24 @@ function moveBomb() {
       player.activeBomb--;
       item.parentElement.removeChild(item);
     }
+    // console.log(isCollide(item, player.base));
+    if (isCollide(item, player.base)) {
+      console.log("Crash");
+    }
   });
+}
+
+function isCollide(a, b) {
+  let aRect = a.getBoundingClientRect();
+  // console.log(aRect);
+  let bRect = b.getBoundingClientRect();
+  // console.log(bRect);
+  return (
+    aRect.bottom < bRect.top ||
+    aRect.top > bRect.bottom ||
+    aRect.right < bRect.left ||
+    aRect.left < bRect.right
+  );
 }
 
 function playGame() {
