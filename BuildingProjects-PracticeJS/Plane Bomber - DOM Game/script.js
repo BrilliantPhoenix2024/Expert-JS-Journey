@@ -20,6 +20,9 @@ function start() {
     makeEnemy();
     player.inplay = true;
     player.score = 2000;
+    player.totalBombs = 2;
+    player.ready = true;
+    player.activeBomb = 0;
     player.plane = document.createElement("div");
     player.plane.setAttribute("class", "plane");
     gameArea.appendChild(player.plane);
@@ -39,9 +42,32 @@ function makeEnemy() {
   gameArea.appendChild(player.base);
 }
 
+function makeBomb() {
+  console.log("making");
+  if (player.ready) {
+    player.score -= 300;
+    player.activeBomb++;
+    let bomb = document.createElement("div");
+    bomb.classList.add("bomb");
+    bomb.innerHTML = player.activeBomb;
+    bomb.y = player.y;
+    bomb.x = player.x;
+    bomb.style.left = bomb.x + "px";
+    bomb.style.top = bomb.y + "px";
+    gameArea.appendChild(bomb);
+    player.ready = false;
+    setTimeout(function () {
+      player.ready = true;
+    }, 500);
+  }
+}
+
 function playGame() {
   if (player.inplay) {
     console.log(keys);
+    if (keys.space) {
+      makeBomb();
+    }
     if (keys.ArrowUp && player.y > 80) {
       player.y -= player.speed;
     }
