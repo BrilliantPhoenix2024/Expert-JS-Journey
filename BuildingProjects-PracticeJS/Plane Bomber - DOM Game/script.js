@@ -43,7 +43,7 @@ function makeEnemy() {
 }
 
 function makeBomb() {
-  console.log("making");
+  // console.log("making");
   if (player.ready) {
     player.score -= 300;
     player.activeBomb++;
@@ -62,9 +62,23 @@ function makeBomb() {
   }
 }
 
+function moveBomb() {
+  let bombs = document.querySelectorAll(".bomb");
+  bombs.forEach(function (item) {
+    // console.log(item);
+    item.y += 5;
+    item.style.top = item.y + "px";
+    if (item.y > 1000) {
+      player.activeBomb--;
+      item.parentElement.removeChild(item);
+    }
+  });
+}
+
 function playGame() {
   if (player.inplay) {
-    console.log(keys);
+    // console.log(keys);
+    moveBomb();
     if (keys.space) {
       makeBomb();
     }
