@@ -17,12 +17,15 @@ let keys = {
 function start() {
   gameMessage.classList.add("hide");
   if (!player.inplay) {
+    gameArea.innerHTML = "";
+    player.level = 10;
     makeEnemy();
     player.inplay = true;
     player.score = 2000;
-    player.totalBombs = 2;
+    player.totalBombs = 6;
     player.ready = true;
     player.activeBomb = 0;
+    player.bombScore = 0;
     player.plane = document.createElement("div");
     player.plane.setAttribute("class", "plane");
     gameArea.appendChild(player.plane);
@@ -32,24 +35,36 @@ function start() {
   }
 }
 
+function endGame() {
+  // console.log("Game Over!");
+  player.inplay = false;
+  gameMessage.classList.remove("hide");
+}
+
 function makeEnemy() {
-  player.base = document.createElement("div");
-  player.base.setAttribute("class", "base");
-  player.base.style.width = Math.floor(Math.random() * 200) + 10 + "px";
-  player.base.style.height = Math.floor(Math.random() * 100) + 100 + "px";
-  player.base.style.left =
-    Math.floor(Math.random() * gameArea.offsetWidth - 200) + 100 + "px";
-  gameArea.appendChild(player.base);
+  player.level--;
+  if (player.level < 0) {
+    endGame();
+  } else {
+    player.base = document.createElement("div");
+    player.base.setAttribute("class", "base");
+    player.base.style.width = Math.floor(Math.random() * 200) + 10 + "px";
+    player.base.style.height = Math.floor(Math.random() * 100) + 100 + "px";
+    player.base.style.left =
+      Math.floor(Math.random() * gameArea.offsetWidth - 200) + 100 + "px";
+    gameArea.appendChild(player.base);
+  }
 }
 
 function makeBomb() {
   // console.log("making");
-  if (player.ready) {
+  if (player.ready && (player.activeBomb < player.totalBombs)) {
     player.score -= 300;
+    player.bombScore++;
     player.activeBomb++;
     let bomb = document.createElement("div");
     bomb.classList.add("bomb");
-    bomb.innerHTML = player.activeBomb;
+    bomb.innerHTML = player.bombScore;
     bomb.y = player.y;
     bomb.x = player.x;
     bomb.style.left = bomb.x + "px";
@@ -72,9 +87,14 @@ function moveBomb() {
       player.activeBomb--;
       item.parentElement.removeChild(item);
     }
-    // console.log(isCollide(item, player.base));
+
     if (isCollide(item, player.base)) {
       console.log("Crash");
+      player.score += 2000;
+      player.activeBomb--;
+      player.base.parentElement.removeChild(player.base);
+      item.parentElement.removeChild(item);
+      makeEnemy();
     }
   });
 }
@@ -84,11 +104,11 @@ function isCollide(a, b) {
   // console.log(aRect);
   let bRect = b.getBoundingClientRect();
   // console.log(bRect);
-  return (
-    aRect.bottom < bRect.top ||
-    aRect.top > bRect.bottom ||
-    aRect.right < bRect.left ||
-    aRect.left < bRect.right
+  return !(
+   ( aRect.bottom < bRect.top) ||
+   ( aRect.top > bRect.bottom) ||
+   ( aRect.right < bRect.left) ||
+  (  aRect.left < bRect.right)
   );
 }
 
@@ -133,12 +153,12 @@ function pressOn(e) {
   e.preventDefault();
   let tempKey = e.key == " " ? "space" : e.key;
   keys[tempKey] = true;
-  console.log(keys);
+  // console.log(keys);
 }
 
 function pressOff(e) {
   e.preventDefault();
   let tempKey = e.key == " " ? "space" : e.key;
   keys[tempKey] = false;
-  console.log(keys);
+  // console.log(keys);
 }
