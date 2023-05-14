@@ -1,3 +1,13 @@
 .hide {
   display: none;
 }
+
+.player {
+  display: inline-block;
+  width: 200px;
+  height: 400px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2em;
+  border: 1px solid #ddd;
+}
