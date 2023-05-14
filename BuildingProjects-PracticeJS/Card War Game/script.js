@@ -33,8 +33,25 @@ function startGame() {
   let numberPlayers = document.querySelector("input").value;
   buildDeck();
   setupPlayers(numberPlayers);
+  dealCards(0);
   //   console.log(deck);
   document.querySelector("input").value = "1";
+}
+
+function dealCards(playerCard) {
+  playerCard = playerCard >= players.length ? 0 : playerCard;
+  console.log(playerCard);
+  if (deck.length > 0) {
+    let randIndex = Math.floor(Math.random() * deck.length);
+    let card = deck.splice(randIndex, 1)[0];
+    deals[playerCard].push(card);
+    playerCard++;
+    return dealCards(playerCard);
+    // console.log(deals);
+  } else {
+    message.textContent = "Cards dealt now!";
+    return;
+  }
 }
 
 function setupPlayers(num) {
