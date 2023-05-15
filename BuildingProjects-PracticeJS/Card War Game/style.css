@@ -11,3 +11,36 @@
   font-size: 2em;
   border: 1px solid #ddd;
 }
+
+.card {
+  display: block;
+  margin: auto;
+  padding: 7px;
+  height: 110px;
+  width: 80px;
+  margin-top: 10px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 10px #333;
+}
+
+.big {
+  font-size: 1.5em;
+  text-align: center;
+  line-height: 35px;
+  margin-top: 10px;
+  display: block;
+}
+
+.red {
+  color: red;
+}
+
+.tiny {
+  display: block;
+  font-size: 0.6em;
+  line-height: 15px;
+  vertical-align: top;
+  text-align: left;
+}
