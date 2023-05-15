@@ -11,13 +11,13 @@ const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
 const suits = ["hearts", "dimas", "clubs", "spades"];
 
 buttons.forEach(function (item) {
-  console.log(item);
+  // console.log(item);
   item.addEventListener("click", playGame);
 });
 
 function playGame(e) {
   let temp = e.target.textContent;
-  console.log(temp);
+  // console.log(temp);
   if (temp == "Start") {
     btnToggle();
     startGame();
@@ -40,7 +40,7 @@ function startGame() {
 }
 
 function showCard(el, card) {
-  console.log(card);
+  // console.log(card);
   if (card != undefined) {
     el.style.backgroundColor = "white";
     let html1 = card.rank + "<br>&" + card.suit + ";";
@@ -62,19 +62,41 @@ function showCard(el, card) {
     div.appendChild(span2);
     el.appendChild(div);
 
-    console.log(div);
+    // console.log(div);
   }
 }
 
 function makeCards() {
   let tempHolder = [];
+  let curWinner = {
+    high: null,
+    player: null,
+  };
+  let playoff = [];
   for (let x = 0; x < players.length; x++) {
     let card = deals[x].shift();
+    if (curWinner.high == card.value) {
+      if (playoff.length == 0) {
+        playoff.push({ player: curWinner.player, card: curWinner.card });
+        playoff.push({
+          player: x,
+          card: card,
+        });
+      }
+    }
+    if (!curWinner.high || curWinner.high < card.value) {
+      curWinner.high = card.value;
+      curWinner.player = x;
+      curWinner.card = card;
+    }
+
     // console.log(card);
     // console.log(deals[x]);
     tempHolder.push(card);
     showCard(players[x], card);
   }
+  // PlayOff
+  console.log(curWinner);
 }
 
 function dealCards(playerCard) {
@@ -109,7 +131,7 @@ function setupPlayers(num) {
     div.appendChild(players[x]);
     gamePlay.appendChild(div);
     deals.push([]);
-    console.log(deals);
+    // console.log(deals);
   }
 }
 
