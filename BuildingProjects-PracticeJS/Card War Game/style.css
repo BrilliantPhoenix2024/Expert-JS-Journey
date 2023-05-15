@@ -44,3 +44,8 @@
   vertical-align: top;
   text-align: left;
 }
+
+.stats {
+  margin-top: 25px;
+  font-size: 0.8em;
+}

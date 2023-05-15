@@ -43,11 +43,11 @@ function showCard(el, card) {
   // console.log(card);
   if (card != undefined) {
     el.style.backgroundColor = "white";
-    let html1 = card.rank + "<br>&" + card.suit + ";";
+    let html1 = card.rank + "</br>&" + card.suit + ";";
     let html2 = card.rank + "&" + card.suit + ";";
     let div = document.createElement("div");
     div.classList.add("card");
-    if (card.suit === "hearts" || card.suit === "diams") {
+    if (card.suit === "hearts" || card.suit === "dimas") {
       div.classList.add("red");
     }
 
@@ -58,7 +58,7 @@ function showCard(el, card) {
 
     let span2 = document.createElement("span");
     span2.innerHTML = html1;
-    span1.classList.add("big");
+    span2.classList.add("big");
     div.appendChild(span2);
     el.appendChild(div);
 
@@ -97,11 +97,32 @@ function makeCards() {
   }
   // PlayOff
   console.log(curWinner);
+  console.log(tempHolder);
+  updater(curWinner.player, tempHolder);
+}
+
+function updater(winner, tempHolder) {
+  players[winner].style.backgroundColor = "green";
+  tempHolder.sort(function () {
+    return 0.5 - Math.random();
+  });
+  for (let record of tempHolder) {
+    deals[winner].push(record);
+  }
+  for (let x = 0; x < players.length; x++) {
+    let div = document.createElement("div");
+    div.classList.add("stats");
+    div.innerHTML = deals[x].length < 1 ? "Lost!" : "Cards: " + deals[x].length;
+    players[x].appendChild(div);
+  }
+
+  res.innerHTML +=
+    "Player " + (winner + 1) + " won" + tempHolder.length + " cards<br>";
 }
 
 function dealCards(playerCard) {
   playerCard = playerCard >= players.length ? 0 : playerCard;
-  console.log(playerCard);
+  // console.log(playerCard);
   if (deck.length > 0) {
     let randIndex = Math.floor(Math.random() * deck.length);
     let card = deck.splice(randIndex, 1)[0];
