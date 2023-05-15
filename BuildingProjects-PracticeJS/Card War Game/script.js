@@ -34,8 +34,42 @@ function startGame() {
   buildDeck();
   setupPlayers(numberPlayers);
   dealCards(0);
+  makeCards();
   //   console.log(deck);
   document.querySelector("input").value = "1";
+}
+
+function showCard(el, card) {
+  console.log(card);
+  if (card != undefined) {
+    el.style.backgroundColor = "white";
+    let html1 = card.rank + "<br>&" + card.suit + ";";
+    let html2 = card.rank + "&" + card.suit + ";";
+    let div = document.createElement("div");
+    div.classList.add("card");
+
+    let span1 = document.createElement("span");
+    span1.innerHTML = html2;
+    div.appendChild(span1);
+
+    let span2 = document.createElement("span");
+    span2.innerHTML = html1;
+    div.appendChild(span2);
+    el.appendChild(div);
+
+    console.log(div);
+  }
+}
+
+function makeCards() {
+  let tempHolder = [];
+  for (let x = 0; x < players.length; x++) {
+    let card = deals[x].shift();
+    // console.log(card);
+    // console.log(deals[x]);
+    tempHolder.push(card);
+    showCard(players[x], card);
+  }
 }
 
 function dealCards(playerCard) {
