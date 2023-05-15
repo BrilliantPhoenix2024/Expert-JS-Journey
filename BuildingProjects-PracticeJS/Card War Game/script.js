@@ -7,8 +7,10 @@ const res = document.querySelector(".res");
 let deck = [];
 let players = [];
 let deals = [];
+let round = 0;
+let inplay = false;
 const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
-const suits = ["hearts", "dimas", "clubs", "spades"];
+const suits = ["hearts", "diams", "clubs", "spades"];
 
 buttons.forEach(function (item) {
   // console.log(item);
@@ -22,6 +24,17 @@ function playGame(e) {
     btnToggle();
     startGame();
   }
+  if (temp == "Attack") {
+    let tempRuns = document.querySelector("input").value;
+    res.innerHTML = "";
+    round = 0;
+    for (let x = 0; x < tempRuns; x++) {
+      if (inplay) {
+        message.innerHTML = "Round " + (x + 1);
+        makeCards();
+      }
+    }
+  }
 }
 
 function btnToggle() {
@@ -30,6 +43,7 @@ function btnToggle() {
 }
 
 function startGame() {
+  inplay = true;
   let numberPlayers = document.querySelector("input").value;
   buildDeck();
   setupPlayers(numberPlayers);
@@ -47,7 +61,7 @@ function showCard(el, card) {
     let html2 = card.rank + "&" + card.suit + ";";
     let div = document.createElement("div");
     div.classList.add("card");
-    if (card.suit === "hearts" || card.suit === "dimas") {
+    if (card.suit === "hearts" || card.suit === "diams") {
       div.classList.add("red");
     }
 
@@ -74,6 +88,7 @@ function makeCards() {
   };
   let playoff = [];
   for (let x = 0; x < players.length; x++) {
+    players[x].innerHTML = "";
     let card = deals[x].shift();
     if (curWinner.high == card.value) {
       if (playoff.length == 0) {
@@ -117,7 +132,7 @@ function updater(winner, tempHolder) {
   }
 
   res.innerHTML +=
-    "Player " + (winner + 1) + " won" + tempHolder.length + " cards<br>";
+    "Player " + (winner + 1) + " won " + tempHolder.length + " cards<br>";
 }
 
 function dealCards(playerCard) {
