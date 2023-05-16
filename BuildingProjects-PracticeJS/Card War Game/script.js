@@ -9,7 +9,8 @@ let players = [];
 let deals = [];
 let round = 0;
 let inplay = false;
-const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+// const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+const ranks = [2, 3];
 const suits = ["hearts", "diams", "clubs", "spades"];
 
 buttons.forEach(function (item) {
@@ -80,40 +81,52 @@ function showCard(el, card) {
   }
 }
 
-function makeCards() {
-  let tempHolder = [];
+function dealRound(playerList, tempHolder) {
   let curWinner = {
     high: null,
     player: null,
   };
   let playoff = [];
+  console.log(playerList);
+  for (let x = 0; x < playerList.length; x++) {
+    let tempPlayerIndex = playerList[x];
+    if (deals[tempPlayerIndex].length > 0) {
+      let card = deals[tempPlayerIndex].shift();
+      if (curWinner.high == card.value) {
+        if (playoff.length == 0) {
+          playoff.push(curWinner.player);
+        }
+        playoff.push(tempPlayerIndex);
+      }
+      if (!curWinner.high || curWinner.high < card.value) {
+        curWinner.high = card.value;
+        curWinner.player = tempPlayerIndex;
+        curWinner.card = card;
+      }
+
+      // console.log(card);
+      // console.log(deals[x]);
+      tempHolder.push(card);
+      showCard(players[tempPlayerIndex], card);
+    }
+  }
+  if (playoff.length > 0) {
+    dealRound(playoff, tempHolder);
+  } else {
+    updater(curWinner.player, tempHolder);
+  }
+}
+
+function makeCards() {
+  let tempHolder = [];
+  let playerList = [];
   for (let x = 0; x < players.length; x++) {
     players[x].innerHTML = "";
-    let card = deals[x].shift();
-    if (curWinner.high == card.value) {
-      if (playoff.length == 0) {
-        playoff.push({ player: curWinner.player, card: curWinner.card });
-        playoff.push({
-          player: x,
-          card: card,
-        });
-      }
+    if (deals[x].length > 0) {
+      playerList.push(x);
     }
-    if (!curWinner.high || curWinner.high < card.value) {
-      curWinner.high = card.value;
-      curWinner.player = x;
-      curWinner.card = card;
-    }
-
-    // console.log(card);
-    // console.log(deals[x]);
-    tempHolder.push(card);
-    showCard(players[x], card);
   }
-  // PlayOff
-  console.log(curWinner);
-  console.log(tempHolder);
-  updater(curWinner.player, tempHolder);
+  dealRound(playerList, tempHolder);
 }
 
 function updater(winner, tempHolder) {
