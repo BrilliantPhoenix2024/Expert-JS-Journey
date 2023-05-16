@@ -103,6 +103,7 @@ function dealRound(playerList, tempHolder) {
         playoff.push(tempPlayerIndex);
       }
       if (!curWinner.high || curWinner.high < card.value) {
+        playoff = [];
         curWinner.high = card.value;
         curWinner.player = tempPlayerIndex;
         curWinner.card = card;
