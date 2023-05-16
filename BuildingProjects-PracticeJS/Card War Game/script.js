@@ -160,7 +160,7 @@ function updater(winner, tempHolder) {
     let div = document.createElement("div");
     div.classList.add("stats");
     if (deals[x].length == total) {
-      div.innerHTML += deals[x].length;
+      div.innerHTML = "Total " + deals[x].length + " cards.";
       // Restart function
       winGame();
     } else {
