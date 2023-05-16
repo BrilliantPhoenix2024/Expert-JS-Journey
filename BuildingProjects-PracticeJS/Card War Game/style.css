@@ -5,7 +5,7 @@
 .player {
   display: inline-block;
   width: 200px;
-  height: 400px;
+  min-height: 600px;
   vertical-align: middle;
   text-align: center;
   font-size: 2em;
@@ -48,4 +48,34 @@
 .stats {
   margin-top: 25px;
   font-size: 0.8em;
+}
+
+.gamePlay {
+  background-color: white;
+}
+
+.message {
+  font-size: 1.2em;
+  padding: 10px;
+}
+
+.start {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+}
+
+.attack {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+input{
+  width: 85px;
+  font-size: 2em;
 }

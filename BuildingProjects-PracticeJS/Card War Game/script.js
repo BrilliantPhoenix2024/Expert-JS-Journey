@@ -10,8 +10,9 @@ let deals = [];
 let round = 0;
 let inplay = false;
 let total = 0;
-// const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
-const ranks = [2, 3];
+message.style.color = "red";
+const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+// const ranks = [2, 3];
 const suits = ["hearts", "diams", "clubs", "spades"];
 
 buttons.forEach(function (item) {
@@ -23,6 +24,7 @@ function playGame(e) {
   let temp = e.target.textContent;
   // console.log(temp);
   if (temp == "Start") {
+    message.style.color = "black";
     btnToggle();
     startGame();
   }
@@ -46,6 +48,7 @@ function btnToggle() {
 
 function startGame() {
   inplay = true;
+  gamePlay.innerHTML = "";
   let numberPlayers = document.querySelector("input").value;
   buildDeck();
   setupPlayers(numberPlayers);
@@ -85,10 +88,10 @@ function showCard(el, card) {
 function dealRound(playerList, tempHolder) {
   let curWinner = {
     high: null,
-    player: null,
+    player: playerList[0],
   };
   let playoff = [];
-  console.log(playerList);
+  // console.log(playerList);
   for (let x = 0; x < playerList.length; x++) {
     let tempPlayerIndex = playerList[x];
     if (deals[tempPlayerIndex].length > 0) {
@@ -127,13 +130,19 @@ function makeCards() {
       playerList.push(x);
     }
   }
+  if (playerList.length == 1) {
+    winGame();
+  }
   dealRound(playerList, tempHolder);
 }
 
 function winGame() {
+  message.style.color = "red";
   btnToggle();
+  inplay = false;
   for (let x = 0; x < players.length; x++) {
-    players[x].innerHTML += deals[x].length >= total ? "WINNER" : "LOSER";
+    players[x].innerHTML +=
+      deals[x].length >= total ? "<br>WINNER" : "<br>LOSER";
   }
   message.innerHTML = "Select number of players";
   document.querySelector("input").value = "3";
