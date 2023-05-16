@@ -9,6 +9,7 @@ let players = [];
 let deals = [];
 let round = 0;
 let inplay = false;
+let total = 0;
 // const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
 const ranks = [2, 3];
 const suits = ["hearts", "diams", "clubs", "spades"];
@@ -129,6 +130,15 @@ function makeCards() {
   dealRound(playerList, tempHolder);
 }
 
+function winGame() {
+  btnToggle();
+  for (let x = 0; x < players.length; x++) {
+    players[x].innerHTML += deals[x].length >= total ? "WINNER" : "LOSER";
+  }
+  message.innerHTML = "Select number of players";
+  document.querySelector("input").value = "3";
+}
+
 function updater(winner, tempHolder) {
   players[winner].style.backgroundColor = "green";
   tempHolder.sort(function () {
@@ -140,10 +150,16 @@ function updater(winner, tempHolder) {
   for (let x = 0; x < players.length; x++) {
     let div = document.createElement("div");
     div.classList.add("stats");
-    div.innerHTML = deals[x].length < 1 ? "Lost!" : "Cards: " + deals[x].length;
+    if (deals[x].length == total) {
+      div.innerHTML += deals[x].length;
+      // Restart function
+      winGame();
+    } else {
+      div.innerHTML =
+        deals[x].length < 1 ? "Lost!" : "Cards: " + deals[x].length;
+    }
     players[x].appendChild(div);
   }
-
   res.innerHTML +=
     "Player " + (winner + 1) + " won " + tempHolder.length + " cards<br>";
 }
@@ -189,6 +205,7 @@ function buildDeck() {
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < ranks.length; j++) {
       let card = {};
+      total++;
       card.suit = suits[i];
       card.rank = ranks[j];
       card.value = j + 1;
